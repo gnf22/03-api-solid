@@ -1,6 +1,5 @@
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository';
 import { compare } from 'bcryptjs';
-import exp from 'constants';
 import { expect, describe, it } from 'vitest';
 import { UserAlreadyExistsError } from './errors/user-already-exists-error';
 import { RegisterUseCase } from './register';
