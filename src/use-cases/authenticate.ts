@@ -4,8 +4,8 @@ import { compare } from 'bcryptjs';
 import { InvalidCredentialsError } from './errors/invalid-credentials-error';
 
 interface AuthenticateUseCaseRequest {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
 interface AuthenticateUseCaseResponse {
