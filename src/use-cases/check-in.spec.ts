@@ -19,8 +19,8 @@ describe('Check-in Use Case', () => {
       title: 'Javascript Gym',
       description: '',
       phone: '',
-      latitude: new Decimal(0),
-      longitude: new Decimal(0),
+      latitude: new Decimal(53.3803913),
+      longitude: new Decimal(-2.8861104),
     });
 
     vi.useFakeTimers();
@@ -82,5 +82,23 @@ describe('Check-in Use Case', () => {
     console.log(checkIn.created_at);
 
     expect(checkIn.id).toEqual(expect.any(String));
+  });
+
+  it('should not be able to check in on distant gym', async () => {
+    gymsRepsotiroy.items.push({
+      id: 'gym-02',
+      title: 'Javascript Gym',
+      description: '',
+      phone: '',
+      latitude: new Decimal(53.5314963),
+      longitude: new Decimal(-2.6618745),
+    });
+
+    await expect(() => sut.execute({
+      gymId: 'gym-02',
+      userId: 'user-01',
+      userLatitude: 53.3803913,
+      userLongitude: -2.8861104,
+    })).rejects.toBeInstanceOf(Error);
   });
 });
